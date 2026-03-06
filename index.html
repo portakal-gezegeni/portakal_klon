@@ -11,8 +11,14 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
     import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
     import { getFirestore, doc, getDoc, setDoc, updateDoc, deleteDoc, onSnapshot, collection, getDocs, arrayUnion } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-  
-    const firebaseConfig = JSON.parse(__firebase_config);
+    const firebaseConfig = {
+    apiKey: "AIzaSyCG_3wdb1XW1i8RTpo082-ip0rfCC-iXpo",
+    authDomain: "portakal1klon.firebaseapp.com",
+    projectId: "portakal1klon",
+    storageBucket: "portakal1klon.firebasestorage.app",
+    messagingSenderId: "39781652671",
+    appId: "1:39781652671:web:5ed9037e155755b74bce0a"
+};
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getFirestore(app);
@@ -517,4 +523,5 @@
         </div>
     </div>
 </body>
+
 </html>
