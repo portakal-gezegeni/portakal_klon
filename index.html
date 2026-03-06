@@ -122,7 +122,7 @@
     };
   
     window.loadClone = async () => {
-        const key = document.getElementById('secretKey').value.trim().toLowerCase();
+        const key = document.getElementById('secretKey').value.trim();
         if(!key || key.length < 3) return showModal("Hata", "Şifre çok kısa.");
   
         const btn = document.querySelector('.btn-start');
@@ -525,4 +525,5 @@
 </body>
 
 </html>
+
 
