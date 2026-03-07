@@ -183,7 +183,7 @@
         if (isBusy || !currentKey) return;
         const input = document.getElementById('userInput');
         const text = input.value.trim();
-       if(!text && !currentImage) return;
+        if(!text) return;
   
         const apiKey = getNextKey();
         if(!apiKey) {
@@ -202,16 +202,13 @@
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    llama-3.2-11b-vision-preview
+                    model: "llama-3.3-70b-versatile",
                     messages: [
                         { 
                             role: "system", 
                             content: `Sen hafızasını tamamen kaybetmiş 'Portakal'sın. KURALLAR: 1. Sadece HAFIZA listene güven. 2. Bilmediğin şeyi dürüstçe söyle. 3. Yeni bilgi verilirse 'fact' alanına yaz. ŞU ANKİ HAFIZAN: [${memories.join(" | ") || "Boş"}] Format: {"type": "learn" veya "question", "response": "cevap", "fact": "kısa bilgi"}` 
                         },
-                        { role: "user", content: currentImage ? [
-                        { type: "text", text: text || "Bu resimde ne görüyorsun?" },
-                        { type: "image_url", image_url: { url: currentImage } }
-                      ] : text }
+                        { role: "user", content: text }
                     ],
                     response_format: { type: "json_object" }
                 })
@@ -246,10 +243,6 @@
         isBusy = false;
         document.querySelector('.btn-send').innerHTML = '<i class="fa-solid fa-paper-plane"></i>';
         input.value = "";
-        currentImage = null;
-document.getElementById('imageInput').value = '';
-document.getElementById('img-icon').setAttribute('class', 'fa-solid fa-plus');
-document.getElementById('img-btn').classList.remove('text-orange-400');
     };
   
     function refreshMemoryList() {
@@ -327,19 +320,7 @@ document.getElementById('img-btn').classList.remove('text-orange-400');
             container.appendChild(s);
         }
     };
-  let currentImage = null;
-
-window.previewImage = (event) => {
-    const file = event.target.files[0];
-    if(!file) return;
-    const reader = new FileReader();
-    reader.onload = (e) => {
-        currentImage = e.target.result;
-        document.getElementById('img-icon').setAttribute('class', 'fa-solid fa-image');
-        document.getElementById('img-btn').classList.add('text-orange-400');
-    };
-    reader.readAsDataURL(file);
-};
+  
     window.tickle = () => {
         const c = document.getElementById('orange-container');
         c.classList.add('laughing');
@@ -536,19 +517,12 @@ window.previewImage = (event) => {
                 </div>
             </div>
         </div>
- <div class="input-area">
-    <input type="file" id="imageInput" accept="image/*" class="hidden" onchange="previewImage(event)">
-    <button onclick="document.getElementById('imageInput').click()" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center flex-shrink-0" id="img-btn">
-        <i class="fa-solid fa-plus" id="img-icon"></i>
-    </button>
-    <input type="text" id="userInput" placeholder="Klonuna bir şeyler söyle..." onkeypress="if(event.key==='Enter') startProcess()">
-    <div class="btn-send" onclick="startProcess()"><i class="fa-solid fa-paper-plane"></i></div>
-</div>
+        <div class="input-area">
+            <input type="text" id="userInput" placeholder="Klonuna bir şeyler söyle..." onkeypress="if(event.key==='Enter') startProcess()">
+            <div class="btn-send" onclick="startProcess()"><i class="fa-solid fa-paper-plane"></i></div>
+        </div>
     </div>
 </body>
+
 </html>
-
-
-
-
 
