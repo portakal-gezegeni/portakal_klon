@@ -414,7 +414,13 @@
     .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(249, 115, 22, 0.3); border-radius: 10px; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     .animate-fadeIn { animation: fadeIn 0.3s ease forwards; }
-    @media (max-width: 768px) { .memory-panel { position: fixed; left: 0; top: 0; height: 100%; transform: translateX(-100%); } .memory-panel.active { transform: translateX(0); } }
+    @media (max-width: 768px) { 
+    .memory-panel { position: fixed; left: 0; top: 0; height: 100%; width: 100% !important; transform: translateX(-100%); z-index: 5000 !important; } 
+    .memory-panel.active { transform: translateX(0); }
+    .top-bar { z-index: 100 !important; }
+    .input-area { bottom: 110px !important; width: 92% !important; z-index: 1000; }
+    .orange-container { transform: scale(0.8) translateY(-40px); }
+}
     </style>
 </head>
 <body>
@@ -470,7 +476,7 @@
     <div id="auth-overlay" class="fixed inset-0 bg-slate-950 z-[2000] flex items-center justify-center p-6">
         <div class="max-w-sm w-full text-center">
             <div class="flex justify-center mb-10">
-                <div class="orange-container scale-75 rotate-12">
+               <div class="orange-container scale-50 md:scale-75 rotate-12">
                     <div class="stem"></div><div class="leaf"></div>
                     <div class="orange-body border-2">
                         <div class="brows-container">
@@ -499,7 +505,7 @@
                 <i class="fa-solid fa-brain text-orange-500"></i>
                 <h2 class="text-xl font-bold">Hafıza</h2>
             </div>
-            <div class="bg-orange-600/20 text-orange-500 px-3 py-1 rounded-lg font-bold text-sm" id="mem-count">0</div><button onclick="toggleMemory()" style="background:rgba(255,255,255,0.05);border:none;color:white;width:32px;height:32px;border-radius:10px;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;">✕</button>
+            <div class="bg-orange-600/20 text-orange-500 px-3 py-1 rounded-lg font-bold text-sm" id="mem-count">0</div><button onclick="toggleMemory()" style="background:rgba(255,255,255,0.1); border:none; color:white; width:40px; height:40px; border-radius:10px; cursor:pointer; font-size:22px; display:flex; align-items:center; justify-content:center; z-index:9999; position:relative;">✕</button>
         </div>
         <div id="memory-list" class="overflow-y-auto space-y-3 flex-grow pr-2 custom-scrollbar"></div>
     </div>
@@ -531,4 +537,5 @@
 </body>
 
 </html>
+
 
