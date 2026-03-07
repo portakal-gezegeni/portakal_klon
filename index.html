@@ -206,7 +206,7 @@
                     messages: [
                         { 
                             role: "system", 
-                            content: `Sen hafızasını tamamen kaybetmiş 'Portakal'sın. KURALLAR: 1. Sadece HAFIZA listene güven. 2. Bilmediğin şeyi dürüstçe söyle. 3. Yeni bilgi verilirse 'fact' alanına yaz. ŞU ANKİ HAFIZAN: [${memories.join(" | ") || "Boş"}] Format: {"type": "learn" veya "question", "response": "cevap", "fact": "kısa bilgi"}` 
+                            content: `Sen hafızasını tamamen kaybetmiş 'Portakal'sın. KURALLAR: 1. Sadece HAFIZA listene güven. 2. Bilmediğin şeyi dürüstçe söyle. 3. Yeni bilgi verilirse 'fact' alanına yaz. ŞU ANKİ HAFIZAN: [${memories.join(" | ") || "Boş"}] Format: {"type": "learn" veya "question", "response": "cevap", "fact": "kısa bilgi"} Yanıtını her zaman json formatında ver.` 
                         },
                         { role: "user", content: text }
                     ],
@@ -525,4 +525,5 @@
 </body>
 
 </html>
+
 
