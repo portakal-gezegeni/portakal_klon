@@ -107,6 +107,8 @@
             showModal("Hata", "Şifre en az 3 karakter olmalıdır.");
             return;
         }
+        const veliOnay = document.getElementById('veliOnay');
+        if (veliOnay && !veliOnay.checked) return showModal("Hata", "Devam etmek için veli onayını işaretlemelisin.");
         const btn = document.querySelector('.btn-start');
         const originalText = btn.innerText;
         btn.innerText = "BAĞLANTI KURULUYOR...";
