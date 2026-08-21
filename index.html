@@ -129,7 +129,16 @@
             return;
         }
   
-        const passDoc = await getDoc(doc(db, 'artifacts', appId, 'public', 'data', 'config', 'passwords'));
+        let passDoc;
+        try {
+            passDoc = await getDoc(doc(db, 'artifacts', appId, 'public', 'data', 'config', 'passwords'));
+        } catch (e) {
+            console.error("Şifre listesi okunamadı:", e);
+            showModal("Hata", "Sunucu bağlantı hatası, tekrar dene.");
+            btn.innerText = "BAŞLAT";
+            btn.disabled = false;
+            return;
+        }
         if (passDoc.exists()) {
             const allowedPasswords = passDoc.data().list || [];
             if (allowedPasswords.length > 0 && !allowedPasswords.includes(key)) {
