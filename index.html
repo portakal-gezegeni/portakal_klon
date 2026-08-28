@@ -345,6 +345,31 @@
         </div>`;
         document.body.appendChild(m);
     }
+
+    window.showKvkkModal = () => {
+        const m = document.createElement('div');
+        m.className = "fixed inset-0 z-[5500] flex items-center justify-center bg-black/90 p-4";
+        m.innerHTML = `<div class="bg-slate-900 p-6 rounded-2xl max-w-md w-full border border-orange-500/30 max-h-[80vh] flex flex-col">
+            <h3 class="text-orange-500 font-bold mb-3 text-left">Kişisel Verilerin Korunması Hakkında Aydınlatma Metni</h3>
+            <div class="text-xs text-slate-300 text-left space-y-3 overflow-y-auto custom-scrollbar pr-2">
+                <p>Bu uygulama ("Portakal Klonu"), çocuğunuzun eğitim amaçlı kullanımı için tasarlanmış yapay zeka destekli bir sohbet uygulamasıdır. Uygulama kullanılırken aşağıdaki veriler işlenir:</p>
+                <ul class="list-disc pl-4 space-y-1">
+                    <li>Sohbet sırasında yazılan mesajlar</li>
+                    <li>Çocuğunuz tarafından öğretilen bilgiler ("hafıza" kayıtları)</li>
+                </ul>
+                <p>Bu veriler:</p>
+                <ul class="list-disc pl-4 space-y-1">
+                    <li>Google Firebase altyapısında saklanır</li>
+                    <li>Yapay zeka cevapları üretmek amacıyla üçüncü taraf bir yapay zeka servis sağlayıcısına (Groq Inc.) iletilir</li>
+                    <li>Reklam veya pazarlama amacıyla kullanılmaz, üçüncü taraflarla paylaşılmaz</li>
+                </ul>
+                <p>6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") kapsamında, 18 yaşından küçük bireylerin kişisel verilerinin işlenmesi için veli/vasi onayı gereklidir. "Veli Onayı" kutusunu işaretleyerek, çocuğunuzun bu uygulamayı kullanmasına ve yukarıda belirtilen şekilde verilerinin işlenmesine onay verdiğinizi beyan edersiniz.</p>
+                <p>Onayınızı istediğiniz zaman geri çekebilir, verilerin silinmesini talep edebilirsiniz.</p>
+            </div>
+            <button onclick="this.parentElement.parentElement.remove()" class="w-full py-2 bg-orange-600 rounded-xl text-white font-bold mt-4">KAPAT</button>
+        </div>`;
+        document.body.appendChild(m);
+    };
   
     document.addEventListener('mousemove', (e) => {
         const pupils = document.querySelectorAll('.pupil');
@@ -675,7 +700,7 @@ window.deletePassword = async (index) => {
                 <input type="password" id="secretKey" placeholder="Hafıza Şifresi" class="w-full bg-white/5 p-5 rounded-2xl border border-white/10 text-center text-xl tracking-[0.5em] outline-none text-white focus:border-orange-500">
                 <div class="flex items-start gap-3 text-left px-1">
                     <input type="checkbox" id="veliOnay" class="mt-1 w-5 h-5 accent-orange-500 flex-shrink-0">
-                    <label for="veliOnay" class="text-xs text-slate-400 cursor-pointer">Veli Onayı: Bu uygulamayı kullanmam için velim/ebeveynim izin vermiştir.</label>
+                    <label for="veliOnay" class="text-xs text-slate-400 cursor-pointer">Veli Onayı: Bu uygulamayı kullanmam için velim/ebeveynim izin vermiştir ve <button type="button" onclick="window.showKvkkModal()" class="underline text-orange-400">KVKK Aydınlatma Metni</button>'ni okumuştur.</label>
                 </div>
                 <button class="btn-start w-full bg-orange-600 p-5 rounded-2xl font-bold text-lg text-white" onclick="loadClone()">BAŞLAT</button>
                 <button type="button" onclick="toggleAdminLogin()" class="w-full text-xs text-slate-500 hover:text-slate-300 underline pt-2">Yönetici misin? Buradan gir</button>
